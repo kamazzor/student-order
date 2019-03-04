@@ -1,10 +1,13 @@
 package ru.javaproject.studentorder;
 
+import ru.javaproject.studentorder.dao.StudentOrderDao;
+import ru.javaproject.studentorder.dao.StudentOrderDaoImpl;
 import ru.javaproject.studentorder.domain.AnswerChildren;
 import ru.javaproject.studentorder.domain.StudentOrder;
 import ru.javaproject.studentorder.domain.register.AnswerCityRegister;
 import ru.javaproject.studentorder.domain.student.AnswerStudent;
 import ru.javaproject.studentorder.domain.wedding.AnswerWedding;
+import ru.javaproject.studentorder.exception.DaoException;
 import ru.javaproject.studentorder.mail.MailSender;
 import ru.javaproject.studentorder.validator.ChildrenValidator;
 import ru.javaproject.studentorder.validator.CityRegisterValidator;
@@ -37,27 +40,26 @@ public class StudentOrderValidator {
         sov.checkAll();
     }
 
-
+    //PARTY UPDATED
     // check all conditions
     public void checkAll() {
-        List<StudentOrder> soList = readStudentOrders();
+        try {
+            List<StudentOrder> soList = readStudentOrders();
 
-        // print all readed orders
-        for (StudentOrder so : soList) {
-            System.out.println();
-            checkOneOrder(so);
+            // print all readed orders
+            for (StudentOrder so : soList) {
+                System.out.println();
+                checkOneOrder(so);
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 
+    //UPDATED
     //read Student orders
-    public List<StudentOrder> readStudentOrders() {
-        List<StudentOrder> soList = new LinkedList<>();
-
-        for (int c = 0; c < 5; c++) {
-            soList.add(SaveStudentOrder.buildStudentOrder(c));
-        }
-
-        return soList;
+    public List<StudentOrder> readStudentOrders() throws DaoException {
+        return new StudentOrderDaoImpl().getStudentOrders();
     }
 
     public void checkOneOrder(StudentOrder so) {

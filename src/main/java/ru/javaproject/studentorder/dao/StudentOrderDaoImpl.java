@@ -86,14 +86,9 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                     "ORDER BY so.student_order_id LIMIT ?";
 
 
-    // TODO: 2/23/2019 refactoring - make one method
     //    Соединяюсь с БД, указывая её конкретную принадлежность к СУБД PostgreSQL
     private Connection getConnection() throws SQLException {
-        Connection con = DriverManager.getConnection(
-                Config.getProperty(Config.DB_URL),
-                Config.getProperty(Config.DB_LOGIN),
-                Config.getProperty(Config.DB_PASSWORD));
-        return con;
+        return ConnectionBuilder.getConnection();
     }
 
     //Метод сохраняет студенческую заявку в БД, возвращая на данном этапе (46) id последней записанной в БД заявки
