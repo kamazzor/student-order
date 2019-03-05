@@ -5,7 +5,7 @@ Applicant submits an application using web form. Programm check each item of app
 
 Used technologies:
 
-Data Base - <b>PostreSQL, pgAdmin 4</b>
+Data Base - <b>PostreSQL 11, pgAdmin 4</b>
 
 Project management - <b>Maven</b>
 
