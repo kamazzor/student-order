@@ -7,6 +7,6 @@ Used technologies:
 
 Data Base - <b>PostreSQL 11, pgAdmin 4</b>
 
-Project management - <b>Maven</b>
+Project management - <b>Maven, JUnit 4</b>
 
 (<i>In progress</i>) Framework - <b>Spring Boot</b> 
